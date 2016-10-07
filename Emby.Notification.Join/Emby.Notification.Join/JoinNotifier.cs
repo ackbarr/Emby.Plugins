@@ -48,7 +48,8 @@ namespace Emby.Notification.Join
 
             var message = new Dictionary<string, string> {
                 { "deviceId", options.DeviceId },
-                { "icon", Plugin.Instance.IconURL.ToString() }
+                { "icon", Plugin.Instance.IconURL.ToString() },
+                { "apikey", options.ApiKey }
             };
 
             if (string.IsNullOrEmpty(request.Description)) {
@@ -61,7 +62,7 @@ namespace Emby.Notification.Join
 
             _logger.Debug("Join Notification to {0} - {1} - {2}", options.DeviceId, request.Name, request.Description);
 
-            return _httpClient.Post(Plugin.Instance.ApiV1Endpoint + "?apikey=" + options.ApiKey , message, cancellationToken);
+            return _httpClient.Get(Plugin.Instance.ApiV1Endpoint + Plugin.Instance.ToQueryString(message), cancellationToken);
         }
 
 

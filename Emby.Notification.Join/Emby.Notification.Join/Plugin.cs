@@ -49,6 +49,14 @@ namespace Emby.Notification.Join
             get { return "https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush";  }
         }
 
+        public string ToQueryString(Dictionary<string, string> variables)
+        {
+            var array = (from KeyValuePair<string,string> pair in variables
+                         select string.Format("{0}={1}", Uri.EscapeUriString(pair.Key), Uri.EscapeUriString(pair.Value)))
+                .ToArray();
+            return "?" + string.Join("&", array);
+        }
+
 
         /// <summary>
         /// Gets the instance.

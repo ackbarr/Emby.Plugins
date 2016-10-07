@@ -41,15 +41,18 @@ namespace Emby.Notification.Join.Api
             var options = GetOptions(request.UserID);
 
             var message = new Dictionary<string, string> {
+                { "apikey", options.ApiKey },
                 { "deviceId", options.DeviceId },
                 { "icon", Plugin.Instance.IconURL.ToString() },
                 { "title", "Test Message" },
                 { "text", "This is a test from Emby." }
             };
+            
+
 
             _logger.Debug("Join Notification <TEST> to {0}", options.DeviceId);
 
-            return _httpClient.Post(new HttpRequestOptions { Url = Plugin.Instance.ApiV1Endpoint + "?apikey=" + options.ApiKey }, message);
+            return _httpClient.Get(new HttpRequestOptions { Url = Plugin.Instance.ApiV1Endpoint + Plugin.Instance.ToQueryString(message) });
         }
     }
 }
