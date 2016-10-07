@@ -2,7 +2,7 @@
 using MediaBrowser.Controller.Plugins;
 using System.IO;
 
-namespace Emby.Notification.Slack.Configuration
+namespace Emby.Notification.Join.Configuration
 {
     public class ConfigPage : IPluginConfigurationPage
     {

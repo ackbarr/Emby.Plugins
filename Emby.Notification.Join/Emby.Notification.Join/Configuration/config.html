@@ -65,15 +65,15 @@
 
                     ApiClient.getPluginConfiguration(pluginId).then(function (config) {
 
-                        var _config = config.Options.filter(function (c) {
+                        var joinConfig = config.Options.filter(function (c) {
 
                             return userId == c.MediaBrowserUserId;
 
                         })[0] || {};
 
-                        $('#chkEnableJoin', page).checked(_config.Enabled || false).checkboxradio("refresh");
-                        $('#txtJoinApiKey', page).val(_config.ApiKey || '');
-                        $('#txtJoinDeviceId', page).val(_config.DeviceId || 'group.all');
+                        $('#chkEnableJoin', page).checked(joinConfig.Enabled || false).checkboxradio("refresh");
+                        $('#txtJoinApiKey', page).val(joinConfig.ApiKey || '');
+                        $('#txtJoinDeviceId', page).val(joinConfig.DeviceId || 'group.all');
 
                         Dashboard.hideLoadingMsg();
                     });
@@ -150,22 +150,22 @@
 
                         var userId = $('#selectUser', form).val();
 
-                        var _config = config.Options.filter(function (c) {
+                        var joinConfig = config.Options.filter(function (c) {
 
                             return userId == c.MediaBrowserUserId;
 
                         })[0];
 
-                        if (!_config) {
-                            _config = {};
-                            config.Options.push(_config);
+                        if (!joinConfig) {
+                            joinConfig = {};
+                            config.Options.push(joinConfig);
                         }
 
-                        _config.MediaBrowserUserId = userId;
+                        joinConfig.MediaBrowserUserId = userId;
 
-                        _config.Enabled = $('#chkEnableJoin', form).checked();
-                        _config.ApiKey = $('#txtJoinApiKey', form).val();
-                        _config.DeviceId = $('#txtJoinDeviceId', form).val();
+                        joinConfig.Enabled = $('#chkEnableJoin', form).checked();
+                        joinConfig.ApiKey = $('#txtJoinApiKey', form).val();
+                        joinConfig.DeviceId = $('#txtJoinDeviceId', form).val();
 
                         ApiClient.updatePluginConfiguration(pluginId, config).then(Dashboard.processPluginConfigurationUpdateResult);
                     });
