@@ -48,7 +48,7 @@ namespace Emby.Notification.Slack
         {
             var options = GetOptions(request.User);
 
-
+            
             var slackMessage = new SlackMessage { channel = options.Channel, icon_emoji = options.Emoji, username = options.UserName };
 
             if (string.IsNullOrEmpty(request.Description))
@@ -63,7 +63,7 @@ namespace Emby.Notification.Slack
 
             var parameters = new Dictionary<string, string> { };
             parameters.Add("payload", _jsonSerializer.SerializeToString(slackMessage));
-
+            
             _logger.Debug("Slack to {0} - {1} - {2}", options.Channel, request.Name, request.Description);
             _logger.Debug("Slack Payload: {0}", _jsonSerializer.SerializeToString(slackMessage));
             var _httpRequest = new HttpRequestOptions();
@@ -72,12 +72,11 @@ namespace Emby.Notification.Slack
             _httpRequest.CancellationToken = cancellationToken;
 
             _httpRequest.SetPostData(parameters);
-            using (await _httpClient.Post(_httpRequest).ConfigureAwait(false))
-            {
-
+            using (await _httpClient.Post(_httpRequest).ConfigureAwait(false)) {
+                
             }
 
-
+            
         }
 
 
