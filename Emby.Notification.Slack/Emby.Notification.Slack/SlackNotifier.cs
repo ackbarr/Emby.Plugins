@@ -66,10 +66,11 @@ namespace Emby.Notification.Slack
 
             _logger.Debug("Slack to {0} - {1} - {2}", options.Channel, request.Name, request.Description);
             _logger.Debug("Slack Payload: {0}", _jsonSerializer.SerializeToString(slackMessage));
-            var _httpRequest = new HttpRequestOptions();
-
-            _httpRequest.Url = options.SlackWebHookURI;
-            _httpRequest.CancellationToken = cancellationToken;
+            var _httpRequest = new HttpRequestOptions
+            {
+                Url = options.SlackWebHookURI,
+                CancellationToken = cancellationToken
+            };
 
             _httpRequest.SetPostData(parameters);
             using (await _httpClient.Post(_httpRequest).ConfigureAwait(false))

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediaBrowser.Common.Plugins;
 using MediaBrowser.Common.Configuration;
-using MediaBrowser.Model.Serialization;
+using MediaBrowser.Common.Plugins;
 using MediaBrowser.Model.Plugins;
+using MediaBrowser.Model.Serialization;
 using Emby.Notification.Slack.Configuration;
 
 namespace Emby.Notification.Slack
 {
-    public class Plugin : MediaBrowser.Common.Plugins.BasePlugin<PluginConfiguration>, IHasWebPages
+    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
         public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer)
             : base(applicationPaths, xmlSerializer)
@@ -54,7 +51,7 @@ namespace Emby.Notification.Slack
         {
             get
             {
-                return "Sends notifications to Slack.";
+                return "Sends notifications to Slack and other webhook compatible systems.";
             }
         }
 
