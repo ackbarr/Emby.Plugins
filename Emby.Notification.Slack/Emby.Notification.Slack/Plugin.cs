@@ -27,12 +27,14 @@ namespace Emby.Notification.Slack
 
         public IEnumerable<PluginPageInfo> GetPages()
         {
+            
             return new[]
             {
                 new PluginPageInfo
                 {
                     Name = Name,
                     EmbeddedResourcePath = GetType().Namespace + ".Configuration.config.html"
+
                 }
             };
         }
