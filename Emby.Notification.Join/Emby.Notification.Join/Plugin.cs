@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Common.Configuration;
 using MediaBrowser.Model.Serialization;
@@ -57,7 +58,7 @@ namespace Emby.Notification.Join
         public string ToQueryString(Dictionary<string, string> variables)
         {
             var array = (from KeyValuePair<string,string> pair in variables
-                         select string.Format("{0}={1}", Uri.EscapeUriString(pair.Key), Uri.EscapeUriString(pair.Value)))
+                         select string.Format("{0}={1}", WebUtility.UrlEncode(pair.Key), WebUtility.UrlEncode(pair.Value)))
                 .ToArray();
             return "?" + string.Join("&", array);
         }
