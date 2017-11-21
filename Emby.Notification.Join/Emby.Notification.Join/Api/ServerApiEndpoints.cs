@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using MediaBrowser.Common.Net;
 using MediaBrowser.Controller.Net;
 using MediaBrowser.Model.Logging;
+using MediaBrowser.Model.Services;
+using System.Threading;
+using MediaBrowser.Model.Serialization;
 using Emby.Notification.Join.Configuration;
-using ServiceStack;
-using ServiceStack.Text;
+
 
 namespace Emby.Notification.Join.Api
 {
@@ -19,7 +21,7 @@ namespace Emby.Notification.Join.Api
         public string UserID { get; set; }
     }
 
-    public class ServerApiEndpoints : IRestfulService
+    public class ServerApiEndpoints : IService
     {
         private readonly IHttpClient _httpClient;
         private readonly ILogger _logger;
@@ -36,7 +38,13 @@ namespace Emby.Notification.Join.Api
                 .FirstOrDefault(i => string.Equals(i.MediaBrowserUserId, userID, StringComparison.OrdinalIgnoreCase));
         }
 
-        public object Post(TestNotification request)
+        public void Post(TestNotification request)
+        {
+            var task = PostAsync(request);
+            Task.WaitAll(task);
+        }
+
+        public async Task PostAsync(TestNotification request)
         {
             var options = GetOptions(request.UserID);
 
@@ -47,12 +55,21 @@ namespace Emby.Notification.Join.Api
                 { "title", "Test Message" },
                 { "text", "This is a test from Emby." }
             };
+
             
-
-
             _logger.Debug("Join Notification <TEST> to {0}", options.DeviceId);
 
-            return _httpClient.Get(new HttpRequestOptions { Url = Plugin.Instance.ApiV1Endpoint + Plugin.Instance.ToQueryString(message) });
+            var httpRequestOptions = new HttpRequestOptions
+            {
+                Url = Plugin.Instance.ApiV1Endpoint + Plugin.Instance.ToQueryString(message),
+                CancellationToken = CancellationToken.None
+            };
+
+
+            using (await _httpClient.Get(httpRequestOptions).ConfigureAwait(false))
+            {
+
+            }
         }
     }
 }

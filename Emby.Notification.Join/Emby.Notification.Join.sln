@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Notification.Join", "Emby.Notification.Join\Emby.Notification.Join.csproj", "{DAE89DFE-A910-4EB4-8B3E-1D642A8CE075}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Notification.Join", "Emby.Notification.Join\Emby.Notification.Join.csproj", "{C5CE3C27-05DE-4996-BFD8-DF9BC6E6C1DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DAE89DFE-A910-4EB4-8B3E-1D642A8CE075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAE89DFE-A910-4EB4-8B3E-1D642A8CE075}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAE89DFE-A910-4EB4-8B3E-1D642A8CE075}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAE89DFE-A910-4EB4-8B3E-1D642A8CE075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5CE3C27-05DE-4996-BFD8-DF9BC6E6C1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5CE3C27-05DE-4996-BFD8-DF9BC6E6C1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5CE3C27-05DE-4996-BFD8-DF9BC6E6C1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5CE3C27-05DE-4996-BFD8-DF9BC6E6C1DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ABF76FDC-D6BD-4273-95D4-A56A41A8B179}
 	EndGlobalSection
 EndGlobal

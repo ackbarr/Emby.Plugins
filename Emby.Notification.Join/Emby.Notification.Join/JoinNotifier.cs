@@ -8,8 +8,8 @@ using MediaBrowser.Common.Net;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Notifications;
 using MediaBrowser.Model.Logging;
+using MediaBrowser.Model.Serialization;
 using Emby.Notification.Join.Configuration;
-using ServiceStack.Text;
 
 namespace Emby.Notification.Join
 {
@@ -42,8 +42,9 @@ namespace Emby.Notification.Join
             get { return Plugin.Instance.Name; }
         }
 
-        public Task SendNotification(UserNotification request, CancellationToken cancellationToken)
+        public async Task SendNotification(UserNotification request, CancellationToken cancellationToken)
         {
+
             var options = GetOptions(request.User);
 
             var message = new Dictionary<string, string> {
@@ -62,7 +63,17 @@ namespace Emby.Notification.Join
 
             _logger.Debug("Join Notification to {0} - {1} - {2}", options.DeviceId, request.Name, request.Description);
 
-            return _httpClient.Get(Plugin.Instance.ApiV1Endpoint + Plugin.Instance.ToQueryString(message), cancellationToken);
+            var _httpRequest = new HttpRequestOptions
+            {
+                Url = Plugin.Instance.ApiV1Endpoint + Plugin.Instance.ToQueryString(message),
+                CancellationToken = cancellationToken
+            };
+
+            using (await _httpClient.Get(_httpRequest).ConfigureAwait(false))
+            {
+
+            }
+
         }
 
 

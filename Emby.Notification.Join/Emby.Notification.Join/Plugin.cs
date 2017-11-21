@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Common.Configuration;
 using MediaBrowser.Model.Serialization;
 using Emby.Notification.Join.Configuration;
+using MediaBrowser.Model.Plugins;
 
 namespace Emby.Notification.Join
 {
-    public class Plugin : MediaBrowser.Common.Plugins.BasePlugin<PluginConfiguration>
+    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
         public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer)
             : base(applicationPaths, xmlSerializer)
@@ -39,6 +38,12 @@ namespace Emby.Notification.Join
             }
         }
 
+        private Guid _id = new Guid("dae89dfe-a910-4eb4-8b3e-1d642a8ce075");
+        public override Guid Id
+        {
+            get { return _id; }
+        }
+
         public Uri IconURL
         {
             get { return new Uri("https://raw.githubusercontent.com/MediaBrowser/Emby.Resources/master/images/Logos/logoicon.png");  }
@@ -57,6 +62,19 @@ namespace Emby.Notification.Join
             return "?" + string.Join("&", array);
         }
 
+        public IEnumerable<PluginPageInfo> GetPages()
+        {
+
+            return new[]
+            {
+                new PluginPageInfo
+                {
+                    Name = Name,
+                    EmbeddedResourcePath = GetType().Namespace + ".Configuration.config.html"
+
+                }
+            };
+        }
 
         /// <summary>
         /// Gets the instance.
