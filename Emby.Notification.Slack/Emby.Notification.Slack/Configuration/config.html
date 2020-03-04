@@ -168,7 +168,7 @@
 
                         slackConfig.MediaBrowserUserId = userId;
 
-                        slackConfig.Enabled = $('#chkEnableSlack', form).checked;
+                        slackConfig.Enabled = $('#chkEnableSlack', form).prop('checked');
                         slackConfig.SlackWebHookURI = $('#txtSlackWebHookUri', form).val();
                         slackConfig.Channel = $('#txtSlackChannel', form).val();
                         slackConfig.Emoji = $('#txtSlackEmoji', form).val();
