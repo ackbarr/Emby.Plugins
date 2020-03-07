@@ -60,12 +60,14 @@ namespace Emby.Notification.Slack
                 slackMessage.text = request.Name + "\r\n" + request.Description;
             }
 
+            slackMessage.text = slackMessage.text.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;");
+
 
             var parameters = new Dictionary<string, string> { };
-            parameters.Add("payload", _jsonSerializer.SerializeToString(slackMessage));
+            parameters.Add("payload", System.Net.WebUtility.UrlEncode(_jsonSerializer.SerializeToString(slackMessage)));
 
             _logger.Debug("Slack to {0} - {1} - {2}", options.Channel, request.Name, request.Description);
-            _logger.Debug("Slack Payload: {0}", _jsonSerializer.SerializeToString(slackMessage));
+            _logger.Debug("Slack Payload: {0}", System.Net.WebUtility.UrlEncode(_jsonSerializer.SerializeToString(slackMessage)));
             var _httpRequest = new HttpRequestOptions
             {
                 Url = options.SlackWebHookURI,
