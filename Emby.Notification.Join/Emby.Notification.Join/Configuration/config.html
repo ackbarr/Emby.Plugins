@@ -71,9 +71,9 @@
 
                         })[0] || {};
 
-                        $('#chkEnableJoin', page).checked(joinConfig.Enabled || false).checkboxradio("refresh");
+                        $('#chkEnableJoin', page).prop("checked", joinConfig.Enabled || false);
                         $('#txtJoinApiKey', page).val(joinConfig.ApiKey || '');
-                        $('#txtJoinDeviceId', page).val(joinConfig.DeviceId || 'group.all');
+                        $('#txtJoinDeviceId', page).val(joinConfig.DeviceId || '');
 
                         Dashboard.hideLoadingMsg();
                     });
@@ -133,7 +133,8 @@
 
                             return '<option value="' + user.Id + '">' + user.Name + '</option>';
 
-                        })).selectmenu('refresh').trigger('change');
+                        }));
+                        
 
                     });
 
@@ -163,7 +164,7 @@
 
                         joinConfig.MediaBrowserUserId = userId;
 
-                        joinConfig.Enabled = $('#chkEnableJoin', form).checked();
+                        joinConfig.Enabled = $('#chkEnableJoin', form).prop("checked"); //.checked();
                         joinConfig.ApiKey = $('#txtJoinApiKey', form).val();
                         joinConfig.DeviceId = $('#txtJoinDeviceId', form).val();
 

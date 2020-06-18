@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-<PropertyGroup> <TargetFrameworks>netstandard1.3;</TargetFrameworks> <AssemblyVersion>1.0.0.2</AssemblyVersion> <FileVersion>1.0.0.2</FileVersion> <Version>1.0.0.2</Version> </PropertyGroup>
+<PropertyGroup> <TargetFrameworks>netstandard1.3;</TargetFrameworks> <AssemblyVersion>1.0.0.3</AssemblyVersion> <FileVersion>1.0.0.3</FileVersion> <Version>1.0.0.3</Version> </PropertyGroup>
 
 <ItemGroup>
   <None Remove="Configuration\config.html" />
