@@ -73,7 +73,7 @@
 
                         $('#chkEnableJoin', page).prop("checked", joinConfig.Enabled || false);
                         $('#txtJoinApiKey', page).val(joinConfig.ApiKey || '');
-                        $('#txtJoinDeviceId', page).val(joinConfig.DeviceId || '');
+                        $('#txtJoinDeviceId', page).val(joinConfig.DeviceId || 'group.all');
 
                         Dashboard.hideLoadingMsg();
                     });
@@ -132,9 +132,10 @@
                         $('#selectUser', page).html(users.map(function (user) {
 
                             return '<option value="' + user.Id + '">' + user.Name + '</option>';
-
+                            
                         }));
-                        
+
+                        $('#selectUser').trigger('change');
 
                     });
 
