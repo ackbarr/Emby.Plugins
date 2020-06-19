@@ -7,10 +7,12 @@ using MediaBrowser.Common.Configuration;
 using MediaBrowser.Model.Serialization;
 using Emby.Notification.Join.Configuration;
 using MediaBrowser.Model.Plugins;
+using System.IO;
+using MediaBrowser.Model.Drawing;
 
 namespace Emby.Notification.Join
 {
-    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
+    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages, IHasThumbImage
     {
         public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer)
             : base(applicationPaths, xmlSerializer)
@@ -77,10 +79,26 @@ namespace Emby.Notification.Join
             };
         }
 
+        public Stream GetThumbImage()
+        {
+            var type = GetType();
+            return type.Assembly.GetManifestResourceStream(type.Namespace + ".logo.png");
+        }
+
+        public ImageFormat ThumbImageFormat
+        {
+            get
+            {
+                return ImageFormat.Png;
+            }
+        }
+
         /// <summary>
         /// Gets the instance.
         /// </summary>
         /// <value>The instance.</value>
         public static Plugin Instance { get; private set; }
+
+
     }
 }

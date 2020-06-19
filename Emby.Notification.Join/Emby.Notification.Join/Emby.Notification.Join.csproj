@@ -1,16 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-<PropertyGroup> <TargetFrameworks>netstandard1.3;</TargetFrameworks> <AssemblyVersion>1.0.0.2</AssemblyVersion> <FileVersion>1.0.0.2</FileVersion> <Version>1.0.0.2</Version> </PropertyGroup>
+<PropertyGroup> <TargetFrameworks>netstandard2.0;</TargetFrameworks> <AssemblyVersion>1.0.0.4</AssemblyVersion> <FileVersion>1.0.0.4</FileVersion> <Version>1.0.0.4</Version> </PropertyGroup>
 
 <ItemGroup>
   <None Remove="Configuration\config.html" />
+  <None Remove="logo.png" />
 </ItemGroup>
 
 <ItemGroup>
   <EmbeddedResource Include="Configuration\config.html" />
+  <EmbeddedResource Include="logo.png" />
 </ItemGroup>
 
-<ItemGroup> <PackageReference Include="mediabrowser.server.core" Version="3.3.15" /> </ItemGroup>
+<ItemGroup> <PackageReference Include="mediabrowser.server.core" Version="4.4.2" /> </ItemGroup>
 
 <Target Name="PostBuild" AfterTargets="PostBuildEvent">
   <Exec Command="xcopy &quot;$(TargetPath)&quot; &quot;%AppData%\Emby-Server\Plugins\&quot; /y" />

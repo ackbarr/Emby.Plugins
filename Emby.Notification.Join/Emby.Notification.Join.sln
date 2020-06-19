@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emby.Notification.Join", "Emby.Notification.Join\Emby.Notification.Join.csproj", "{C5CE3C27-05DE-4996-BFD8-DF9BC6E6C1DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emby.Notification.Join", "Emby.Notification.Join\Emby.Notification.Join.csproj", "{C5CE3C27-05DE-4996-BFD8-DF9BC6E6C1DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
